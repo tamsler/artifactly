@@ -1,0 +1,355 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<title>Artifactly</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta name="format-detection" content="address=no" />
+	<link rel="stylesheet" href="jquery.mobile-1.0.min.css" />
+	<link rel="stylesheet" href="artifactly.css" />
+	<script type="text/javascript" src="jquery-1.6.4.min.js"></script>
+	<script type="text/javascript" src="mock.js"></script>
+	<script type="text/javascript" src="artifactly.js"></script>
+	<script type="text/javascript" src="jquery.mobile-1.0.min.js"></script>
+</head> 
+<body> 
+
+<div data-role="page" id="welcome">
+
+	<div data-role="content">
+	
+		<div class="welcome-title"><h1>Artifactly</h1></div>
+
+		<fieldset class="ui-grid-a welcome-content-container welcome-grid">
+			<div class="ui-block-a welcome-content welcome-item-a">
+				<img id="welcome-new-artifact-img" src="images/new-launcher.png" alt="New Artifact" />
+				<br />
+				<span class="welcome-label">New Artifact</span>
+			</div>
+			<div class="ui-block-b welcome-content welcome-item-b">
+				<img id="welcome-artifacts-img" src="images/artifacts-launcher.png" alt="Artifacts" />
+				<br />
+				<span class="welcome-label">Artifacts</span>
+			</div>
+			<div class="ui-block-a welcome-content welcome-item-c">
+				<img id="welcome-locations-img" src="images/locations-launcher.png" alt="Locations" />
+				<br />
+				<span class="welcome-label">Locations</span>
+			</div>
+			<div class="ui-block-b welcome-content welcome-item-d">
+				<img id="welcome-options-img" src="images/options-launcher.png" alt="Options" />
+				<br />
+				<span class="welcome-label">Options</span>
+			</div>  
+		</fieldset>
+
+	</div>
+
+</div>
+
+<div data-role="page" id="manage-artifacts">
+
+	<div data-role="header" data-backbtn="false" data-position="inline">
+		<a href="#welcome" data-role="button" data-icon="home" data-transition="none" data-iconpos="notext" data-theme="c"></a>
+		<h3>Artifacts</h3>
+		<a href="#new-artifact" data-role="button" data-icon="plus" data-transition="none" data-theme="c">Artifact</a>
+	</div>
+
+	<div data-role="content">
+		<div id="artifactly-message"></div>
+		<div id="artifactly-list">
+			<ul data-role="listview" data-inset="false"></ul>
+		</div>
+	</div>
+
+</div>
+
+<div data-role="page" id="new-artifact">
+	
+	<div data-role="header" data-backbtn="false" data-position="inline">
+		<a href="#welcome" data-role="button"  data-icon="home" data-transition="none" data-iconpos="notext" data-theme="c"></a>
+		<h3>Create</h3>
+		<a href="#new-location" data-role="button" data-icon="plus" data-transition="none" data-theme="c">Location</a>
+	</div>
+
+	<div data-role="content">	
+    	
+    	<label for="artifact-name">Item Name:</label>
+    	<input type="text" name="artifact-name" id="artifact-name" value=""/>
+    	
+    	<label for="artifact-data">Notes:</label>
+    	<input type="text" name="artifact-data" id="artifact-data" value=""/>
+		
+		<label for="artifact-location-selection" class="select">Location Name:</label>
+		<select name="artifact-location-selection" id="artifact-location-selection">
+		</select>
+		
+		<div data-role="fieldcontain" id="artifact-location-name-div">
+    		<label for="artifact-location-name">Location Name:</label>
+    		<input type="text" name="artifact-location-name" id="artifact-location-name" value=""/>
+    		<br />
+    		<div id="artifact-current-location-map" class="view-artifact-map">
+				<img src="images/map-big.png" alt="Static Map Image" />
+			</div>
+		</div>
+		<div data-role="controlgroup" data-type="horizontal" class="artifact-button-group">
+			<input type="button" name="add-artifact-button" id="add-artifact-button" value="Add" />
+			<input type="button" name="close-artifact-button" id="close-artifact-button" value="Close" />
+		</div>
+	</div>
+	
+</div>
+
+<div data-role="page" id="new-location">
+
+	<div data-role="header" data-backbtn="false" data-position="inline">
+		<a href="#welcome" data-role="button" data-icon="home" data-transition="none" data-iconpos="notext" data-theme="c"></a>
+		<h3>Location</h3>
+		<a href="#new-artifact" data-role="button" data-icon="back" data-transition="none" data-iconpos="notext" data-theme="c"></a>
+	</div>
+	
+	<div data-role="content">
+		
+		<div id="new-locaiton-search-group" data-role="fieldcontain">
+    		<input type="text" name="search-entry" id="search-entry"  class="new-location-search-text" value=""/>
+    		<input type="button" name="search-location-button" id="search-location-button" data-inline="true" value="Search"/>
+    		<input type="button" name="nearby-places-button" id="nearby-places-button" data-inline="true" value="Nearby" />
+		</div>
+		<div id="new-location-current-location" data-role="fieldcontain">
+			<b>Current Location:</b><br />
+			<div id="new-location-center-point"></div>
+		</div>
+		<div id="google-search-branding"></div><br />
+		<div id="search-result-message"></div>
+		<div id="search-result-list">
+			<ul data-role="listview"></ul>
+		</div>
+	</div>
+	
+</div>
+
+<div data-role="page" id="map">
+
+	<div data-role="header" data-backbtn="false" data-position="inline">
+		<a href="#welcome" data-role="button" data-icon="home" data-iconpos="notext" data-transition="none" data-theme="c"></a>
+		<h3>Map</h3>
+	</div>
+
+	<div data-role="content" id="map-content">
+		<div id="map-canvas"></div>
+	</div>
+	
+</div>
+
+<div data-role="page" id="location-chooser-map">
+
+	<div data-role="header" data-backbtn="false" data-position="inline">
+		<a href="#welcome" data-role="button" data-icon="home" data-iconpos="notext" data-transition="none" data-theme="c"></a>
+		<h3>Update Location</h3>
+		<a href="#" data-role="button" data-icon="back" data-transition="none" data-rel="back" data-iconpos="notext" data-theme="c"></a>
+	</div>
+
+	<div data-role="content" id="location-chooser-content">
+		<div id="location-chooser-canvas"></div>
+	</div>
+	
+	<div data-role="controlgroup" data-type="horizontal" class="location-chooser-buttons">
+		<input type="button" name="location-chooser-update" id="location-chooser-update" value="Update" />
+		<a href="#" data-role="button" data-transition="none" data-rel="back">Cancel</a>
+	</div>
+	
+</div>
+
+<div data-role="page" id="options">
+
+	<div data-role="header" data-backbtn="false" data-position="inline">
+		<a href="#welcome" data-role="button" data-icon="home" data-iconpos="notext" data-transition="none" data-theme="c"></a>
+		<h1>Options</h1>
+	</div>
+
+	<div data-role="content">
+	
+		<fieldset data-role="controlgroup" data-type="horizontal" id="options-radius">
+			<legend>Location Range:</legend>
+			<input type="number" name="options-radius-input" id="options-radius-input" class="options-radius-input" value="2000" min="1" max="20000"/>
+			<input type="button" name="set-radius" id="set-radius" value="Save" />
+		</fieldset>
+	
+		<fieldset data-role="controlgroup" data-type="horizontal" id="options-radius-units">
+			<legend>Units:</legend>
+			<input type="radio" name="options-radius-unit" id="options-radius-unit-m" value="m" checked="checked">
+			<label for="options-radius-unit-m">m</label>
+			<input type="radio" name="options-radius-unit" id="options-radius-unit-km" value="km">
+			<label for="options-radius-unit-km">km</label>
+			<input type="radio" name="options-radius-unit" id="options-radius-unit-ft" value="ft">
+			<label for="options-radius-unit-ft">ft</label>
+			<input type="radio" name="options-radius-unit" id="options-radius-unit-mi" value="mi">
+			<label for="options-radius-unit-mi">mi</label>
+		</fieldset>
+		
+		<fieldset data-role="controlgroup" data-type="horizontal" id="options-sound-notification-controlgroup">
+			<legend>Sound Alert:</legend>
+			<input type="radio" name="sound-notification" id="sound-notification-on" value="on" checked="checked">
+			<label for="sound-notification-on">On</label>
+			<input type="radio" name="sound-notification" id="sound-notification-off" value="off">
+			<label for="sound-notification-off">Off</label>
+		</fieldset>
+		
+		<fieldset data-role="controlgroup" data-type="horizontal" id="options-load-map-controlgroup">
+			<legend>Load Maps:</legend>
+			<input type="radio" name="load-maps" id="load-maps-on" value="on" checked="checked">
+			<label for="load-maps-on">On</label>
+			<input type="radio" name="load-maps" id="load-maps-off" value="off">
+			<label for="load-maps-off">Off</label>
+		</fieldset>
+		
+	</div>
+	
+</div>
+
+<div data-role="page" id="view-artifact">
+
+	<div data-role="header" data-backbtn="false" data-position="inline">
+		<a href="#welcome" data-role="button" data-icon="home" data-iconpos="notext" data-transition="none" data-theme="c"></a>
+		<h3>Artifact</h3>
+		<a href="#manage-artifacts" data-role="button" data-icon="back" data-transition="none" data-iconpos="notext" data-theme="c"></a>
+		
+	</div>
+	
+	<div data-role="content">
+
+		<label for="view-artifact-art-name">Item Name:</label>
+		<input type="text" name="view-artifact-art-name" id="view-artifact-art-name" value=""/>
+		
+		<label for="view-artifact-art-data">Notes:</label>
+		<input type="text" name="view-artifact-art-data" id="view-artifact-art-data" value=""/>
+		
+		<label for="view-artifact-loc-name">Location Name:</label>
+		<input type="text" name="view-artifact-loc-name" id="view-artifact-loc-name" value=""/>
+	
+		<br />
+		<div id="view-artifact-map" class="view-artifact-map">
+		</div>
+		<br />
+		
+		<div data-role="controlgroup" data-type="horizontal" class="artifact-button-group">
+			<input type="button" name="update-artifact" id="update-artifact" value="Update" />
+ 			<input type="button" name="delete-artifact" id="delete-artifact" value="Delete" />
+ 			<input type="button" name="close-artifact-icon" id="close-artifact-icon" data-icon="home" value="&nbsp;" />
+		</div>
+	</div>
+	
+</div>
+
+<div data-role="page" id="view-location">
+
+	<div data-role="header" data-backbtn="false" data-position="inline">
+		<a href="#welcome" data-role="button" data-icon="home" data-iconpos="notext" data-transition="none" data-theme="c"></a>
+		<h3>Location</h3>
+		<a href="#" data-role="button" data-icon="back" data-transition="none" data-rel="back" data-iconpos="notext" data-theme="c"></a>
+	</div>
+	
+	<div data-role="content">
+
+		<label for="view-location-loc-name">Location Name:</label>
+		<input type="text" name="view-location-loc-name" id="view-location-loc-name" value=""/>
+		
+		<br />
+		<p id="view-location-map-help" class="view-location-map-help">Tap on the map below to edit location</p>
+		<div id="view-location-map" class="view-location-map">
+		</div>
+		<br />
+		
+		<div id="view-location-address"></div>
+		<br />
+		
+		<div data-role="controlgroup" data-type="horizontal" class="location-button-group">
+			<input type="button" name="update-location" id="update-location" value="Update" />
+			<!--
+				NOTE: Wrap input with a span element so that we can hide/show it via code.
+				Once https://github.com/jquery/jquery-mobile/issues/1110 is fixed, we should
+				be able to hide/show the input element without using the span element.
+			-->
+			<span id="delete-location-button">
+				<input type="button" name="delete-location" id="delete-location" value="Delete" />
+			</span>
+			<input type="button" name="close-location-icon" id="close-location-icon" data-icon="home" value="&nbsp;" />
+		</div>
+	</div>
+</div>
+
+<div data-role="page" id="manage-locations">
+	
+	<div data-role="header" data-backbtn="false" data-position="inline">
+		<a href="#welcome" data-role="button" data-icon="home" data-iconpos="notext" data-transition="none" data-theme="c"></a>
+		<h3>Locations</h3>
+	</div>
+
+	<div data-role="content">
+		<div id="manage-locations-list-message"></div>
+		<div id="manage-locations-list">
+			<ul data-role="listview" data-inset="false"></ul>
+		</div>
+	</div>
+	
+</div>
+
+<div data-role="page" id="app-info">
+
+	<div data-role="header" data-backbtn="false" data-position="inline">
+		<a href="#welcome" data-role="button" data-icon="home" data-iconpos="notext" data-transition="none" data-theme="c"></a>
+		<h1>About</h1>
+	</div>
+	
+	<div data-role="content" id="app-info-content">
+		<p id="app-info-version"></p>
+		<p>Thomas Amsler</p>
+		<a href="http://www.artifactly.org">www.artifactly.org</a>
+		<br />
+		<br />
+		<p>Report a bug:</p>
+		<a href="http://code.google.com/p/artifactly/issues/list">code.google.com/p/artifactly</a>
+		<br />
+		<br />
+		<p>Follow Artifactly on Twitter:</p>
+		<p>@artifactly</p>
+	</div>
+	
+</div>
+
+<!-- ## DIALOGS ## -->
+
+<div data-role="dialog" id="artifact-dialog" data-theme="d">
+
+	<div data-role="header" data-position="inline">
+		<h1>Dialog</h1>
+	</div>
+	
+	<div data-role="content">
+		<h3 class="delete-artifact-header">Delete Artifact:</h3>
+		<div id="delete-artifact-name" class="delete-artifact-name"></div>
+		<br />
+		<input type="button" name="delete-artifact-yes" id="delete-artifact-yes" value="Yes" />
+		<input type="button" name="delete-artifact-cancel" id="delete-artifact-cancel" value="Cancel" />
+	</div>
+	
+</div>
+
+<div data-role="dialog" id="location-dialog" data-theme="d">
+
+	<div data-role="header" data-position="inline">
+		<h1>Dialog</h1>
+	</div>
+	
+	<div data-role="content">
+		<h3 class="delete-artifact-header">Delete Location:</h3>
+		<div id="delete-location-name" class="delete-location-name"></div>
+		<br />
+		<input type="button" name="delete-location-yes" id="delete-location-yes" value="Yes" />
+		<input type="button" name="delete-location-cancel" id="delete-location-cancel" value="Cancel" />
+	</div>
+	
+</div>
+
+</body>
+</html>

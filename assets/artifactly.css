@@ -1,0 +1,211 @@
+/* Artifactly CSS */
+
+
+/* Fonts */
+ 
+@font-face {
+	font-family: nunito-bold;
+	src: url('file:///android_asset/fonts/Nunito-Bold.ttf') format('truetype');
+}
+
+/* JQM UI */
+
+.ui-page {
+	background: #EBF5FF;
+}
+
+.ui-content {
+	background: none;
+}
+
+.ui-title {
+	font: bold medium arial,sans-serif !important;
+}
+
+.ui-controlgroup-label {
+	font: bold large arial,sans-serif !important;
+	padding-top: 10px;
+	float: left;
+}
+
+.ui-controlgroup-controls {
+	width: auto;
+	float: right;
+}
+
+/* Dialogs */
+#artifact-dialog.ui-page,
+#location-dialog.ui-page {
+	background: #FFFFFF;
+}
+
+/* Welcome Page */
+
+.welcome-item-c,
+.welcome-item-d {
+	padding-top: 35px !important;
+}
+
+.welcome-label {
+	font: bold large arial,sans-serif;
+}
+
+.welcome-title {
+	font: bold x-large nunito-bold,arial,sans-serif;
+	text-align: center;
+	padding-bottom: 15px;
+}
+
+
+/* Options Page */
+
+.options-radius-input {
+	width: 80px !important;
+}
+
+#options-sound-notification-controlgroup {
+	padding-top: 20px;
+}
+
+/* Manage Artifacts Page */
+
+.artifactly-list-divider h3 {
+	padding-left: 20px;
+}
+
+.artifactly-list-divider img {
+	padding-top: 7px;
+}
+
+
+/* Manage Locations Page */
+
+.manage-locations {
+	padding-bottom: 5px !important;
+}
+
+#manage-locations-list li p {
+	font-weight: normal !important;
+}
+
+/* View Location Page */
+
+.view-location-map-help {
+	text-align: center;
+	font: normal small arial,sans-serif;
+	margin-top:0px;
+	margin-bottom:0px;
+}
+
+div.view-location-map > img {
+	border:2px solid blue;
+}
+
+/* Location Chooser Page */
+
+.location-chooser-buttons {
+	position:absolute;
+   	bottom:0;
+   	width:100%;
+   	text-align: center;	
+}
+
+/* New Location Page */
+
+#new-locaiton-search-group {
+	text-align: center;
+	padding: 0px 0px 10px 0px;
+}
+
+#new-location-current-location.ui-field-contain {
+	padding: 5px;
+}
+
+#new-location-center-point,
+#search-result-message {
+	font: normal small arial,sans-serif;
+}
+
+#search-result-message {
+	padding-top: 5px;
+	padding-left: 5px;
+}
+
+#google-search-branding {
+	padding-top: 10px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+	float: left;
+}
+
+#search-result-list {
+	padding-top: 20px;	
+}
+
+
+/* App Info Page */
+
+#app-info-content {
+	text-align: center;
+	font-weight: bold;
+}
+
+/* Grouped and HTML tags */
+
+.artifact-button-group .ui-icon,
+.location-button-group .ui-icon {
+	left: 20px !important;
+}
+
+.location-button-group ,
+.artifact-button-group {
+	text-align: center;
+}
+
+.delete-artifact-name,
+.delete-location-name {
+	font-weight: bold;
+	text-align: center;
+}
+
+.welcome-content,
+.delete-artifact-header,
+.view-artifact-map,
+.view-location-map,
+#view-location-address  {
+	text-align: center;
+}
+
+#map,
+#location-chooser-map,
+#map-canvas,
+#location-chooser-canvas {
+	width:100%;
+	height:100%;	
+}
+
+#map-content,
+#location-chooser-content {
+	width:100%;
+	height:100%;
+	padding:0;
+}
+
+label {
+	font: bold large arial,sans-serif !important;
+	padding-top: 10px;
+}
+
+li img {
+	padding: 1px;
+}
+
+/* Formatting appendLocationAddress() result */
+
+.location-address-name {
+	font: bold large arial,sans-serif;
+}
+
+.location-formatted-address {	
+	font: normal small arial,sans-serif;
+}
